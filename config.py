@@ -1,0 +1,25 @@
+__author__ = 'vvvkamper'
+
+HUE_TABLE = {
+    0: 60,
+    1: 44,
+    2: 30,
+    3: 15,
+    4: 1,
+    5: 331,
+    6: 300,
+    7: 269,
+    8: 240,
+    9: 181,
+    10: 123,
+    11: 92
+}
+
+SATURATION_TABLE = [5, 10, 20, 30, 40, 50, 60, 70, 80, 100] + [100]*8
+BRIGHTNESS_TABLE = [100]*8 + [100, 90, 80, 70, 60, 50, 40, 30, 20, 10]
+
+BLACK_MAX_BRIGHTNESS = 5
+WHITE_MIN_BRIGHTNESS = 98
+WHITE_MAX_SATURATION = 5
+GRAY_MAX_SATURATION = 18
+BRIGHTNESS_IMPORTANCE_LEVEL = 70
