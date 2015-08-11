@@ -1,5 +1,6 @@
 from colorsys import rgb_to_hsv
 from skimage import io, img_as_float
+from skimage.color import gray2rgb
 from sklearn.cluster import KMeans
 from color_wheel import find_color_code_by_color_distance
 from color_wheel import find_color_code_naive
@@ -44,6 +45,8 @@ def get_image_colors(img):
 
 if __name__ == '__main__':
     import os
-    filename = os.path.realpath("data/4.6.jpg")
+    filename = os.path.realpath("data/out/586982/586982.jpg")
     image = io.imread(filename)
-    get_image_colors(image)
+    (color, color_code_naive), (color_by_distance, color_code_by_distance), image = get_image_colors(image)
+    io.imshow(image)
+    io.show()
