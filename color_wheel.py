@@ -18,6 +18,10 @@ __author__ = 'vvvkamper'
 color_wheel = product(enumerate(HUE_TABLE.values()), enumerate(izip(SATURATION_TABLE, BRIGHTNESS_TABLE)))
 color_wheel = [(HSVColor(h, s / 100.0, v / 100.0), ih, iy) for (ih, h), (iy, (s, v)) in color_wheel]
 
+extended_colors = [(HSVColor(212, 0.11, 0.91), 13, 0)]
+
+colors = color_wheel + extended_colors
+
 algorithms = {
     'delta_e_cie2000': delta_e_cie2000
 }
