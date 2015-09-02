@@ -1,3 +1,4 @@
+from itertools import repeat
 import logging
 import os
 
@@ -6,7 +7,7 @@ import matplotlib.pyplot as plt
 from skimage import io, img_as_float, img_as_ubyte
 from skimage.filters import sobel
 from skimage.morphology import watershed
-from skimage.color import rgb2gray
+from skimage.color import rgb2gray, gray2rgb
 from skimage.exposure import rescale_intensity
 import numpy as np
 
@@ -41,7 +42,14 @@ def erase_background(img):
 
 def clean_background(img):
     img = img_as_float(img)
-    alpha = np.linalg.norm(img - (1, 1, 1), axis=2)
+    if len(img.shape) == 3:
+        pass
+    elif len(img.shape) == 2:
+        img = gray2rgb(img)
+    else:
+        raise ValueError('img shape must be (w, h, d) or (w, h)')
+    bg = repeat(1, img.shape[2])
+    alpha = np.linalg.norm(img - tuple(bg), axis=2)
     alpha[alpha > EPS] = 1
     alpha_img = np.dstack((img, alpha))
     return alpha_img, alpha
@@ -49,7 +57,7 @@ def clean_background(img):
 
 if __name__ == '__main__':
 
-    filename = os.path.realpath("data/out/582778/582778.jpg")
+    filename = os.path.realpath("data/597832.jpg")
     image = io.imread(filename)
 
     img_with_alpha, img_markers = clean_background(image)
